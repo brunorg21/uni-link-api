@@ -4,7 +4,7 @@ UniLink
 
 ## Requisitos Funcionais
 
-- [ ] O sistema deve cadastrar o professor. Alta
+- [ ] O sistema deve cadastrar o professor.
 - [ ] O sistema deve cadastrar o aluno.
 - [ ] O sistema deve conter as disciplinas da faculdade.
 - [ ] O sistema deve permitir o cadastro de salas de aulas.
