@@ -4,7 +4,8 @@
   "description": "UniLink",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docker": "docker compose up -d",
+    "docker:stop": "docker compose stop"
   },
   "keywords": [],
   "author": "",
