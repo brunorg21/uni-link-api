@@ -2,6 +2,8 @@
 
 UniLink
 
+## Sobre
+
 ## Requisitos Funcionais
 
 - [ ] O sistema deve cadastrar o professor.
@@ -18,8 +20,12 @@ UniLink
 - [ ] O sistema deve exibir ao aluno as aulas do dia.
 - [ ] O sistema deve exibir a quantidade de computadores de cada laboratório.
 - [ ] O sistema deve permitir a alocação da semana atual.
-
-## Requisitos não funcionais
-
+- [ ] O administrador deve poder editar, excluir e adicionar outro administrador
+- [ ] O administrador deve poder editar, excluir e adicionar laboratórios
+- [ ] O administrador deve poder editar, excluir e adicionar salas de aula
+- [ ] O administrador deve poder editar, excluir e adicionar Diciplinas
+- [ ] O administrador deve poder editar, excluir e adicionar Alunos
+- [ ] O administrador deve poder editar, excluir e adicionar Professores
+- [ ] O administrador deve poder editar, excluir e adicionar qualquer alocação
 - [ ] O sistema deve sugerir a sala mais adequada para a turma do docente.
 - [ ] O sistema não deve permitir que o aluno faça alterações nas alocações.

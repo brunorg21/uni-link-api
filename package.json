@@ -1,0 +1,17 @@
+{
+  "name": "uni-link-api",
+  "version": "1.0.0",
+  "description": "UniLink",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.3",
+    "prisma": "^5.12.0",
+    "typescript": "^5.4.3"
+  }
+}
