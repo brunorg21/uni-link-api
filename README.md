@@ -4,6 +4,8 @@ UniLink
 
 ## Sobre
 
+UniLink é um sistema de gerenciamento de salas onde o objetivo é facilitar o agendamento de salas em uma determinada instituição, descomplicando a vida de alunos e professores.
+
 ## Requisitos Funcionais
 
 - [ ] O sistema deve cadastrar o professor.
