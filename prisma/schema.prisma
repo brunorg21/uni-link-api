@@ -87,6 +87,7 @@ model Alocation {
   classroomId String
   class       Classes   @relation(fields: [classesId], references: [id])
   classesId   String
+  createdAt   DateTime  @default(now())
 
   @@map("alocations")
 }
