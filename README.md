@@ -8,13 +8,13 @@ UniLink é um sistema de gerenciamento de salas onde o objetivo é facilitar o a
 
 ## Requisitos Funcionais
 
-- [ ] O sistema deve cadastrar o professor.
-- [ ] O sistema deve cadastrar o aluno.
-- [ ] O sistema deve conter as disciplinas da faculdade.
-- [ ] O sistema deve permitir o cadastro de salas de aulas.
-- [ ] O sistema deve permitir o cadastro de laboratórios.
-- [ ] O sistema deve cadastrar a capacidade de cada sala de aula.
-- [ ] O sistema deve cadastrar a capacidade de cada laboratório.
+- [x] O sistema deve cadastrar o professor.
+- [x] O sistema deve cadastrar o aluno.
+- [x] O sistema deve conter as disciplinas da instituição.
+- [x] O sistema deve permitir o cadastro de salas de aulas.
+- [x] O sistema deve permitir o cadastro de laboratórios.
+- [x] O sistema deve cadastrar a capacidade de cada sala de aula.
+- [x] O sistema deve cadastrar a capacidade de cada laboratório.
 - [ ] O sistema deve permitir o cancelamento da alocação em determinado horário.
 - [ ] O sistema deve permitir fazer alteração da alocação em determinado horário.
 - [ ] O sistema deve bloquear a alocação de sala caso o horário já esteja reservado.
