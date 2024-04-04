@@ -31,10 +31,6 @@ export class EditClassroomUseCase {
       throw new UserNotFoundError();
     }
 
-    if (user.role !== "ADMIN") {
-      throw new NotAllowedError();
-    }
-
     const classroom = await this.classRoomRepository.findById(classroomId);
 
     if (!classroom) {

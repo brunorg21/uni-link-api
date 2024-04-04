@@ -28,10 +28,6 @@ export class CreateClassroomUseCase {
       throw new UserNotFoundError();
     }
 
-    if (user.role !== "ADMIN") {
-      throw new NotAllowedError();
-    }
-
     const createdClassroom = await this.classroomRepository.create(classroom);
 
     return {
