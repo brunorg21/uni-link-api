@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
-import { ClassroomRepository } from "../repositories/classroom-repository";
+import { ClassroomRepository } from "../../repositories/classroom-repository";
 
 interface DeleteClassroomUseCaseRequest {
   classroomId: string;

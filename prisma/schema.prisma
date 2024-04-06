@@ -53,6 +53,8 @@ model Classes {
   subjectId       String
   classSchedule   ClassSchedule @relation(fields: [classScheduleId], references: [id])
   classScheduleId String
+  classroom       Classroom     @relation(fields: [classroomId], references: [id])
+  classroomId     String
   classDate       DateTime
   reserved        Boolean       @default(false)
   Alocation       Alocation[]
@@ -76,6 +78,7 @@ model Classroom {
   capacity  Int
   computers Int?
   Alocation Alocation[]
+  Classes   Classes[]
 
   @@map("classrooms")
 }

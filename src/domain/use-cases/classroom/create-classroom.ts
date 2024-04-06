@@ -1,8 +1,7 @@
 import { Classroom, Prisma } from "@prisma/client";
-import { UserRepository } from "../repositories/user-repository";
-import { ClassroomRepository } from "../repositories/classroom-repository";
+import { UserRepository } from "../../repositories/user-repository";
+import { ClassroomRepository } from "../../repositories/classroom-repository";
 import { UserNotFoundError } from "@/errors/user-not-found-error";
-import { NotAllowedError } from "@/errors/not-allowed-error";
 
 interface CreateClassroomUseCaseRequest {
   classroom: Prisma.ClassroomCreateInput;

@@ -1,5 +1,5 @@
 import { Prisma, User } from "@prisma/client";
-import { UserRepository } from "../repositories/user-repository";
+import { UserRepository } from "../../repositories/user-repository";
 
 interface CreateUserUseCaseRequest {
   user: Prisma.UserCreateInput;

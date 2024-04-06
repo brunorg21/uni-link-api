@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
-import { UserRepository } from "../repositories/user-repository";
-import { UserNotFoundError } from "@/errors/user-not-found-error";
+import { UserRepository } from "../../repositories/user-repository";
+
 import { compare } from "bcrypt";
 import { InvalidCredentialsError } from "@/errors/invalid-credentials-error";
 

@@ -22,12 +22,12 @@ UniLink é um sistema de gerenciamento de salas onde o objetivo é facilitar o a
 - [ ] O sistema deve exibir ao aluno as aulas do dia.
 - [ ] O sistema deve exibir a quantidade de computadores de cada laboratório.
 - [ ] O sistema deve permitir a alocação da semana atual.
-- [ ] O administrador deve poder editar, excluir e adicionar outro administrador
+- [x] O administrador deve poder editar, excluir e adicionar outro administrador
 - [x] O administrador deve poder editar, excluir e adicionar laboratórios
 - [x] O administrador deve poder editar, excluir e adicionar salas de aula
-- [ ] O administrador deve poder editar, excluir e adicionar Diciplinas
+- [x] O administrador deve poder editar, excluir e adicionar Diciplinas
 - [x] O administrador deve poder editar, excluir e adicionar Alunos
 - [x] O administrador deve poder editar, excluir e adicionar Professores
 - [ ] O administrador/professor deve poder editar, excluir e adicionar qualquer alocação
 - [ ] O sistema deve sugerir a sala mais adequada para a turma do docente.
-- [ ] O sistema não deve permitir que o aluno faça alterações nas alocações.
+- [x] O sistema não deve permitir que o aluno faça alterações nas alocações.

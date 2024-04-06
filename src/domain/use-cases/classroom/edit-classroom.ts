@@ -1,8 +1,6 @@
 import { Classroom, Prisma } from "@prisma/client";
-import { ClassroomRepository } from "../repositories/classroom-repository";
-import { UserRepository } from "../repositories/user-repository";
-import { UserNotFoundError } from "@/errors/user-not-found-error";
-import { NotAllowedError } from "@/errors/not-allowed-error";
+import { ClassroomRepository } from "../../repositories/classroom-repository";
+import { UserRepository } from "../../repositories/user-repository";
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
 
 interface EditClassroomUseCaseRequest {
