@@ -6,5 +6,6 @@ export interface ClassroomRepository {
     classroomId: string,
     data: Prisma.ClassroomUpdateInput
   ): Promise<Classroom>;
+
   findById(id: string): Promise<Classroom | null>;
 }

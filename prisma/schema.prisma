@@ -53,6 +53,7 @@ model Classes {
   subjectId       String
   classSchedule   ClassSchedule @relation(fields: [classScheduleId], references: [id])
   classScheduleId String
+  classDate       DateTime
   reserved        Boolean       @default(false)
   Alocation       Alocation[]
 
