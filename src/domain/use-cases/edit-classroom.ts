@@ -8,7 +8,6 @@ import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
 interface EditClassroomUseCaseRequest {
   classroomId: string;
   data: Prisma.ClassroomUpdateInput;
-  userId: string;
 }
 interface EditClassroomUseCaseResponse {
   classroom: Classroom;
@@ -23,14 +22,7 @@ export class EditClassroomUseCase {
   async execute({
     classroomId,
     data,
-    userId,
   }: EditClassroomUseCaseRequest): Promise<EditClassroomUseCaseResponse> {
-    const user = await this.userRepository.findById(userId);
-
-    if (!user) {
-      throw new UserNotFoundError();
-    }
-
     const classroom = await this.classRoomRepository.findById(classroomId);
 
     if (!classroom) {
