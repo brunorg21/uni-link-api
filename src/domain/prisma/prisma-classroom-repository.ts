@@ -37,4 +37,12 @@ export class PrismaClassroomRepository implements ClassroomRepository {
 
     return classroom;
   }
+
+  async delete(classroomId: string): Promise<void> {
+    await prisma.classroom.delete({
+      where: {
+        id: classroomId,
+      },
+    });
+  }
 }
