@@ -12,10 +12,7 @@ interface EditClassroomUseCaseResponse {
 }
 
 export class EditClassroomUseCase {
-  constructor(
-    private classRoomRepository: ClassroomRepository,
-    private userRepository: UserRepository
-  ) {}
+  constructor(private classRoomRepository: ClassroomRepository) {}
 
   async execute({
     classroomId,
