@@ -1,5 +1,5 @@
 import { Prisma, Subject } from "@prisma/client";
-import { SubjectRepository } from "../repositories/subject-repository";
+import { SubjectRepository } from "../../repositories/subject-repository";
 
 interface CreateSubjectUseCaseRequest {
   data: Prisma.SubjectCreateInput;

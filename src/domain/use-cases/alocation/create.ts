@@ -1,5 +1,6 @@
 import { Alocation, Prisma } from "@prisma/client";
 import { AlocationRepository } from "../../repositories/alocation-repository";
+import { NotAllowedError } from "@/errors/not-allowed-error";
 
 interface CreateAlocationUseCaseRequest {
   alocation: Prisma.AlocationCreateInput;
@@ -14,10 +15,26 @@ export class CreateAlocationUseCase {
   async execute({
     alocation,
   }: CreateAlocationUseCaseRequest): Promise<CreateAlocationUseCaseResponse> {
-    const createdAlocation = await this.alocationRepository.create(alocation);
+    var today = new Date();
+    var startOfWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - today.getDay()
+    );
+    var endOfWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + 6
+    );
 
-    return {
-      alocation: createdAlocation,
-    };
+    if (today >= startOfWeek && today <= endOfWeek) {
+      const createdAlocation = await this.alocationRepository.create(alocation);
+
+      return {
+        alocation: createdAlocation,
+      };
+    } else {
+      throw new NotAllowedError();
+    }
   }
 }

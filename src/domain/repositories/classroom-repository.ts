@@ -8,4 +8,5 @@ export interface ClassroomRepository {
   ): Promise<Classroom>;
   delete(classroomId: string): Promise<void>;
   findById(id: string): Promise<Classroom | null>;
+  findByTeacher(teacherId: string): Promise<Classroom[] | null>;
 }

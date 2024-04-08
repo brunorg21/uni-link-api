@@ -16,6 +16,25 @@ export class PrismaClassroomRepository implements ClassroomRepository {
 
     return classroom;
   }
+
+  async findByTeacher(teacherId: string): Promise<Classroom[] | null> {
+    const classrooms = await prisma.classroom.findMany({
+      where: {
+        Alocation: {
+          every: {
+            userId: teacherId,
+          },
+        },
+      },
+      take: 2,
+    });
+
+    if (!classrooms) {
+      return null;
+    }
+
+    return classrooms;
+  }
   async create(data: Prisma.ClassroomCreateInput): Promise<Classroom> {
     const classroom = await prisma.classroom.create({
       data,

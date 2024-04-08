@@ -1,5 +1,5 @@
 import { Prisma, Subject } from "@prisma/client";
-import { SubjectRepository } from "../repositories/subject-repository";
+import { SubjectRepository } from "../../repositories/subject-repository";
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
 
 interface FindUniqueSubjectUseCaseRequest {
