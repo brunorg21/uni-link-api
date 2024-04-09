@@ -1,7 +1,7 @@
 import { Alocation, Prisma } from "@prisma/client";
 
 export interface AlocationRepository {
-  create(data: Prisma.AlocationCreateInput): Promise<Alocation>;
+  create(data: Prisma.AlocationUncheckedCreateInput): Promise<Alocation>;
   edit(
     alocationId: string,
     data: Prisma.AlocationUpdateInput
