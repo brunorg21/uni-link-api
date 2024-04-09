@@ -3,7 +3,7 @@ import { ClassesRepository } from "../repositories/classes-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaClassesRepository implements ClassesRepository {
-  async create(data: Prisma.ClassesCreateInput): Promise<Classes> {
+  async create(data: Prisma.ClassesUncheckedCreateInput): Promise<Classes> {
     const classes = await prisma.classes.create({
       data,
     });
@@ -12,7 +12,7 @@ export class PrismaClassesRepository implements ClassesRepository {
   }
   async edit(
     classId: string,
-    data: Prisma.ClassesUpdateInput
+    data: Prisma.ClassesUncheckedUpdateInput
   ): Promise<Classes> {
     const classes = await prisma.classes.update({
       where: {

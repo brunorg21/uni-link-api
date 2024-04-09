@@ -3,7 +3,7 @@ import { SubjectRepository } from "../repositories/subject-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaSubjectRepository implements SubjectRepository {
-  async create(data: Prisma.SubjectCreateInput): Promise<Subject> {
+  async create(data: Prisma.SubjectUncheckedCreateInput): Promise<Subject> {
     const subject = await prisma.subject.create({
       data,
     });
@@ -26,7 +26,7 @@ export class PrismaSubjectRepository implements SubjectRepository {
 
   async edit(
     subjectId: string,
-    data: Prisma.SubjectUpdateInput
+    data: Prisma.SubjectUncheckedUpdateInput
   ): Promise<Subject> {
     const subject = await prisma.subject.update({
       where: {

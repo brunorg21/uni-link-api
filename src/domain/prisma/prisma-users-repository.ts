@@ -3,7 +3,10 @@ import { UserRepository } from "../repositories/user-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaUsersRepository implements UserRepository {
-  async create(data: Prisma.UserCreateInput): Promise<User> {
+  fetchUserByName() {
+    throw new Error("Method not implemented.");
+  }
+  async create(data: Prisma.UserUncheckedCreateInput): Promise<User> {
     const user = await prisma.user.create({
       data,
     });

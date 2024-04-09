@@ -1,10 +1,10 @@
 import { Classroom, Prisma } from "@prisma/client";
 
 export interface ClassroomRepository {
-  create(data: Prisma.ClassroomCreateInput): Promise<Classroom>;
+  create(data: Prisma.ClassroomUncheckedCreateInput): Promise<Classroom>;
   edit(
     classroomId: string,
-    data: Prisma.ClassroomUpdateInput
+    data: Prisma.ClassroomUncheckedUpdateInput
   ): Promise<Classroom>;
   delete(classroomId: string): Promise<void>;
   findById(id: string): Promise<Classroom | null>;

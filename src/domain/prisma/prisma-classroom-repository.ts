@@ -35,7 +35,7 @@ export class PrismaClassroomRepository implements ClassroomRepository {
 
     return classrooms;
   }
-  async create(data: Prisma.ClassroomCreateInput): Promise<Classroom> {
+  async create(data: Prisma.ClassroomUncheckedCreateInput): Promise<Classroom> {
     const classroom = await prisma.classroom.create({
       data,
     });
@@ -45,7 +45,7 @@ export class PrismaClassroomRepository implements ClassroomRepository {
 
   async edit(
     classroomId: string,
-    data: Prisma.ClassroomUpdateInput
+    data: Prisma.ClassroomUncheckedUpdateInput
   ): Promise<Classroom> {
     const classroom = await prisma.classroom.update({
       where: {

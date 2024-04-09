@@ -3,7 +3,7 @@ import { AlocationRepository } from "../repositories/alocation-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaAlocationRepository implements AlocationRepository {
-  async create(data: Prisma.AlocationCreateInput): Promise<Alocation> {
+  async create(data: Prisma.AlocationUncheckedCreateInput): Promise<Alocation> {
     const alocation = await prisma.alocation.create({
       data,
     });
@@ -12,7 +12,7 @@ export class PrismaAlocationRepository implements AlocationRepository {
   }
   async edit(
     alocationId: string,
-    data: Prisma.AlocationUpdateInput
+    data: Prisma.AlocationUncheckedUpdateInput
   ): Promise<Alocation> {
     const alocation = await prisma.alocation.update({
       where: {
