@@ -1,11 +1,25 @@
-import { Prisma, User } from "@prisma/client";
+import { $Enums, Prisma, User } from "@prisma/client";
 import { UserRepository } from "../repositories/user-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaUsersRepository implements UserRepository {
-  fetchUserByName() {
-    throw new Error("Method not implemented.");
+  async findManyTeacherByQuery(q: string): Promise<User[] | null> {
+    const users = await prisma.user.findMany({
+      where: {
+        name: {
+          contains: q,
+        },
+        role: "TEACHER",
+      },
+    });
+
+    if (!users) {
+      return null;
+    }
+
+    return users;
   }
+
   async create(data: Prisma.UserUncheckedCreateInput): Promise<User> {
     const user = await prisma.user.create({
       data,
