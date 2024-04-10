@@ -8,4 +8,5 @@ export interface SubjectRepository {
   ): Promise<Subject>;
   delete(subjectId: string): Promise<void>;
   findById(subjectId: string): Promise<Subject | null>;
+  findByStudent(studentId: string): Promise<Subject[] | null>;
 }

@@ -1,4 +1,4 @@
-import { Classes, Prisma } from "@prisma/client";
+import { Classes, Prisma, Subject } from "@prisma/client";
 
 export interface ClassesRepository {
   create(data: Prisma.ClassesUncheckedCreateInput): Promise<Classes>;
@@ -8,4 +8,5 @@ export interface ClassesRepository {
   ): Promise<Classes>;
   delete(classId: string): Promise<void>;
   findById(classId: string): Promise<Classes | null>;
+  findManyByStudent(subjects: Subject[]): Promise<Classes[] | null>;
 }
