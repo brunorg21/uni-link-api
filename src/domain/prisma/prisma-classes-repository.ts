@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import dayjs from "dayjs";
 
 export class PrismaClassesRepository implements ClassesRepository {
-  async findManyByStudent(subjects: Subject[]): Promise<Classes[] | null> {
+  async findManyByStudent(subjects: Subject[]): Promise<Classes[]> {
     const classes = await Promise.all(
       subjects.map(async (subject) => {
         return await prisma.classes.findMany({
@@ -19,11 +19,7 @@ export class PrismaClassesRepository implements ClassesRepository {
       })
     );
 
-    const allClasses = classes.flat(); 
-
-    if (!allClasses) {
-      return null;
-    }
+    const allClasses = classes.flat();
 
     return allClasses;
   }

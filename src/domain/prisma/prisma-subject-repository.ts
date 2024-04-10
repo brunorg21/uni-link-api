@@ -45,16 +45,12 @@ export class PrismaSubjectRepository implements SubjectRepository {
     });
   }
 
-  async findByStudent(studentId: string): Promise<Subject[] | null> {
+  async findByStudent(studentId: string): Promise<Subject[]> {
     const subjects = await prisma.subject.findMany({
       where: {
         userId: studentId,
       },
     });
-
-    if (!subjects) {
-      return null;
-    }
 
     return subjects;
   }

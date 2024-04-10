@@ -8,5 +8,5 @@ export interface ClassesRepository {
   ): Promise<Classes>;
   delete(classId: string): Promise<void>;
   findById(classId: string): Promise<Classes | null>;
-  findManyByStudent(subjects: Subject[]): Promise<Classes[] | null>;
+  findManyByStudent(subjects: Subject[]): Promise<Classes[]>;
 }
