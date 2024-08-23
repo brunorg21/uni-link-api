@@ -2,10 +2,11 @@
   "name": "uni-link-api",
   "version": "1.0.0",
   "description": "UniLink",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
     "docker": "docker compose up -d",
-    "docker:stop": "docker compose stop"
+    "docker:stop": "docker compose stop",
+    "dev": "tsx --watch src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +15,16 @@
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.12.3",
     "prisma": "^5.12.0",
+    "tsx": "^4.17.0",
     "typescript": "^5.4.3"
   },
   "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/jwt": "^8.0.1",
     "@prisma/client": "^5.12.0",
     "bcrypt": "^5.1.1",
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.10",
+    "fastify": "^4.28.1",
+    "zod": "^3.23.8"
   }
 }

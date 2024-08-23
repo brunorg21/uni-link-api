@@ -32,7 +32,7 @@ model User {
   role          Role        @default(STUDENT)
   subject       Subject[]
   createdAt     DateTime    @default(now())
-  Alocation     Alocation[]
+  alocations    Alocation[]
 
   @@map("users")
 }
@@ -42,7 +42,7 @@ model Subject {
   name    String
   user    User      @relation(fields: [userId], references: [id])
   userId  String
-  Classes Classes[]
+  classes Classes[]
 
   @@map("subjects")
 }
@@ -57,7 +57,7 @@ model Classes {
   classroomId     String
   classDate       DateTime
   reserved        Boolean       @default(false)
-  Alocation       Alocation[]
+  alocations      Alocation[]
 
   @@map("classes")
 }
@@ -66,19 +66,19 @@ model ClassSchedule {
   id        String    @id @default(uuid())
   startHour String
   endHour   String
-  Classes   Classes[]
+  classes   Classes[]
 
   @@map("classSchedules")
 }
 
 model Classroom {
-  id        String        @id @default(uuid())
-  name      String
-  type      ClassroomType @default(CLASSROOM)
-  capacity  Int
-  computers Int?
-  Alocation Alocation[]
-  Classes   Classes[]
+  id         String        @id @default(uuid())
+  name       String
+  type       ClassroomType @default(CLASSROOM)
+  capacity   Int
+  computers  Int?
+  alocations Alocation[]
+  classes    Classes[]
 
   @@map("classrooms")
 }
