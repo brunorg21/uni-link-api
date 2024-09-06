@@ -33,6 +33,7 @@ export class CreateUserUseCase {
       email: user.email,
       name: user.name,
       password_hash: passwordHash,
+      role: user.role
     });
 
     return {
