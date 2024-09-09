@@ -17,10 +17,15 @@ export class PrismaClassroomRepository implements ClassroomRepository {
     return classroom;
   }
 
+  async findMany(): Promise<Classroom[] | []> {
+    const classrooms = await prisma.classroom.findMany();
+    return classrooms;
+  }
+
   async findByTeacher(teacherId: string): Promise<Classroom[] | null> {
     const classrooms = await prisma.classroom.findMany({
       where: {
-        Alocation: {
+        alocations: {
           every: {
             userId: teacherId,
           },

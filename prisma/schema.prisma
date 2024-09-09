@@ -30,7 +30,7 @@ model User {
   email         String      @unique()
   password_hash String
   role          Role        @default(STUDENT)
-  subject       Subject[]
+  subjects      Subject[]
   createdAt     DateTime    @default(now())
   alocations    Alocation[]
 
