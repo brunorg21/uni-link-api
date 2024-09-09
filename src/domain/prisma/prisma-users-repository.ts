@@ -3,19 +3,18 @@ import { UserRepository } from "../repositories/user-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaUsersRepository implements UserRepository {
-  async findManyTeacherByQuery(q: string): Promise<User[] | null> {
+  async findManyTeacherByQuery(q: string | null): Promise<User[]> {
     const users = await prisma.user.findMany({
+      include: {
+        subjects: true,
+      },
       where: {
         name: {
-          contains: q,
+          contains: q ? q : "",
         },
         role: "TEACHER",
       },
     });
-
-    if (!users) {
-      return null;
-    }
 
     return users;
   }

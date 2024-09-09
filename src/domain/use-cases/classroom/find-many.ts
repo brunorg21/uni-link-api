@@ -1,18 +1,15 @@
 import { ClassroomRepository } from "@/domain/repositories/classroom-repository";
 import { Classroom } from "@prisma/client";
 
-
-interface FindManyUseCaseResponse {
+interface FindManyClassroomResponse {
   classrooms: Classroom[];
 }
 
-export class FindManyUseCase {
+export class FindManyClassroom {
   constructor(private classroomRepository: ClassroomRepository) {}
 
-  async execute(): Promise<FindManyUseCaseResponse> {
+  async execute(): Promise<FindManyClassroomResponse> {
     const classrooms = await this.classroomRepository.findMany();
-
-    
 
     return {
       classrooms,

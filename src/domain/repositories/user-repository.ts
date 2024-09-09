@@ -4,5 +4,5 @@ export interface UserRepository {
   create(data: Prisma.UserUncheckedCreateInput): Promise<User>;
   findById(id: string): Promise<User | null>;
   findByEmail(email: string): Promise<User | null>;
-  findManyTeacherByQuery(q: string): Promise<User[] | null>;
+  findManyTeacherByQuery(q: string | null): Promise<User[]>;
 }

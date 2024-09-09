@@ -4,7 +4,7 @@ import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
 import { UserRepository } from "@/domain/repositories/user-repository";
 
 interface FindManyTeacherByQueryUseCaseRequest {
-  q: string;
+  q: string | null;
 }
 interface FindManyTeacherByQueryUseCaseResponse {
   users: User[];
