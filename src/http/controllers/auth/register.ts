@@ -14,13 +14,6 @@ const registerUserSchema = z.object({
 export async function register(req: FastifyRequest, reply: FastifyReply) {
   const { email, name, password, role } = registerUserSchema.parse(req.body);
 
-  console.log({
-    email,
-    name,
-    password,
-    role
-  })
-
   const userRepository = new PrismaUsersRepository();
   const createUserUseCase = new CreateUserUseCase(userRepository);
 

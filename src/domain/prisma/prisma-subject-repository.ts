@@ -24,6 +24,17 @@ export class PrismaSubjectRepository implements SubjectRepository {
     return subject;
   }
 
+  async findMany(): Promise<Subject[]> {
+    const subjects = await prisma.subject.findMany({
+      include: {
+        user: true,
+        classes: true,
+      },
+    });
+
+    return subjects;
+  }
+
   async edit(
     subjectId: string,
     data: Prisma.SubjectUncheckedUpdateInput

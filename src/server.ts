@@ -4,6 +4,7 @@ import { authRoutes } from "./http/controllers/auth/routes";
 import fastifyJwt from "@fastify/jwt";
 import { classroomRoutes } from "./http/controllers/classrooms/routes";
 import { userRoutes } from "./http/controllers/users/routes";
+import { subjectRoutes } from "./http/controllers/subject/routes";
 
 const app = fastify();
 
@@ -19,6 +20,7 @@ app.register(authRoutes);
 
 app.register(classroomRoutes);
 app.register(userRoutes);
+app.register(subjectRoutes);
 
 app
   .listen({

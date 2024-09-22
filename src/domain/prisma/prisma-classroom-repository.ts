@@ -18,7 +18,11 @@ export class PrismaClassroomRepository implements ClassroomRepository {
   }
 
   async findMany(): Promise<Classroom[] | []> {
-    const classrooms = await prisma.classroom.findMany();
+    const classrooms = await prisma.classroom.findMany({
+      include: {
+        alocations: true,
+      },
+    });
     return classrooms;
   }
 
