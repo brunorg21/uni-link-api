@@ -10,4 +10,5 @@ export interface ClassScheduleRepository {
   ): Promise<ClassSchedule>;
   delete(classScheduleId: string): Promise<void>;
   findById(classScheduleId: string): Promise<ClassSchedule | null>;
+  findMany(): Promise<ClassSchedule[]>;
 }

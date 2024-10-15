@@ -45,4 +45,10 @@ export class PrismaClassScheduleRepository implements ClassScheduleRepository {
 
     return classSchedule;
   }
+
+  async findMany(): Promise<ClassSchedule[]> {
+    const classSchedules = await prisma.classSchedule.findMany();
+
+    return classSchedules;
+  }
 }

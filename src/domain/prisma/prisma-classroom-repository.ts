@@ -21,6 +21,17 @@ export class PrismaClassroomRepository implements ClassroomRepository {
     const classrooms = await prisma.classroom.findMany({
       include: {
         alocations: true,
+        classes: {
+          select: {
+            subject: {
+              include: {
+                user: true,
+              },
+            },
+            classScheduleId: true,
+            id: true,
+          },
+        },
       },
     });
     return classrooms;

@@ -35,6 +35,20 @@ export class PrismaSubjectRepository implements SubjectRepository {
     return subjects;
   }
 
+  async findManyByTeacher(teacherId: string): Promise<Subject[]> {
+    const subjects = await prisma.subject.findMany({
+      where: {
+        userId: teacherId,
+        user: {
+          role: "TEACHER",
+          id: teacherId,
+        },
+      },
+    });
+
+    return subjects;
+  }
+
   async edit(
     subjectId: string,
     data: Prisma.SubjectUncheckedUpdateInput

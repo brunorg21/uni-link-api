@@ -2,7 +2,7 @@ import { ClassesRepository } from "@/domain/repositories/classes-repository";
 import { Classes, Prisma } from "@prisma/client";
 
 interface CreateClassUseCaseRequest {
-  data: Prisma.ClassesCreateInput;
+  data: Prisma.ClassesUncheckedCreateInput;
 }
 interface CreateClassUseCaseResponse {
   class: Classes;

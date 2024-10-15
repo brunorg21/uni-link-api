@@ -5,6 +5,8 @@ import fastifyJwt from "@fastify/jwt";
 import { classroomRoutes } from "./http/controllers/classrooms/routes";
 import { userRoutes } from "./http/controllers/users/routes";
 import { subjectRoutes } from "./http/controllers/subject/routes";
+import { classSchedulesRoutes } from "./http/controllers/classSchedule/routes";
+import { alocationRoutes } from "./http/controllers/alocation/routes";
 
 const app = fastify();
 
@@ -21,6 +23,8 @@ app.register(authRoutes);
 app.register(classroomRoutes);
 app.register(userRoutes);
 app.register(subjectRoutes);
+app.register(classSchedulesRoutes);
+app.register(alocationRoutes);
 
 app
   .listen({
