@@ -8,8 +8,8 @@ interface FindManyClassroomResponse {
 export class FindManyClassroom {
   constructor(private classroomRepository: ClassroomRepository) {}
 
-  async execute(): Promise<FindManyClassroomResponse> {
-    const classrooms = await this.classroomRepository.findMany();
+  async execute(date?: string | null): Promise<FindManyClassroomResponse> {
+    const classrooms = await this.classroomRepository.findMany(date);
 
     return {
       classrooms,

@@ -1,6 +1,10 @@
 import { Prisma, $Enums, Classroom } from "@prisma/client";
 import { ClassroomRepository } from "../repositories/classroom-repository";
 import { prisma } from "@/lib/prisma";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 export class PrismaClassroomRepository implements ClassroomRepository {
   async findById(id: string): Promise<Classroom | null> {
@@ -17,11 +21,34 @@ export class PrismaClassroomRepository implements ClassroomRepository {
     return classroom;
   }
 
-  async findMany(): Promise<Classroom[] | []> {
+  async findMany(date?: string | null): Promise<Classroom[] | []> {
+    console.log("date", dayjs(date).utc().startOf("day").toISOString());
+
     const classrooms = await prisma.classroom.findMany({
+      where: {
+        ...(date && {
+          classes: {
+            some: {
+              classDate: dayjs(date).utc().startOf("day").toISOString(),
+            },
+          },
+        }),
+      },
       include: {
-        alocations: true,
+        alocations: {
+          where: {
+            date: dayjs(date).utc().startOf("day").toISOString(),
+          },
+          include: {
+            class: true,
+            classroom: true,
+            user: true,
+          },
+        },
         classes: {
+          where: {
+            classDate: dayjs(date).utc().startOf("day").toISOString(),
+          },
           select: {
             subject: {
               include: {
