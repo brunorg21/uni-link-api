@@ -22,22 +22,16 @@ export class PrismaClassroomRepository implements ClassroomRepository {
   }
 
   async findMany(date?: string | null): Promise<Classroom[] | []> {
-    console.log("date", dayjs(date).utc().startOf("day").toISOString());
+    // Log para verificação
+    console.log("a", dayjs(date).utc().startOf("day").toISOString());
 
     const classrooms = await prisma.classroom.findMany({
-      where: {
-        ...(date && {
-          classes: {
-            some: {
-              classDate: dayjs(date).utc().startOf("day").toISOString(),
-            },
-          },
-        }),
-      },
       include: {
         alocations: {
           where: {
-            date: dayjs(date).utc().startOf("day").toISOString(),
+            ...(date && {
+              date: dayjs(date).utc().startOf("day").toISOString(),
+            }),
           },
           include: {
             class: true,
@@ -47,7 +41,9 @@ export class PrismaClassroomRepository implements ClassroomRepository {
         },
         classes: {
           where: {
-            classDate: dayjs(date).utc().startOf("day").toISOString(),
+            ...(date && {
+              classDate: dayjs(date).utc().startOf("day").toISOString(),
+            }),
           },
           select: {
             subject: {
@@ -57,10 +53,12 @@ export class PrismaClassroomRepository implements ClassroomRepository {
             },
             classScheduleId: true,
             id: true,
+            classDate: true,
           },
         },
       },
     });
+
     return classrooms;
   }
 
