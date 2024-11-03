@@ -5,4 +5,6 @@ export interface UserRepository {
   findById(id: string): Promise<User | null>;
   findByEmail(email: string): Promise<User | null>;
   findManyTeacherByQuery(q: string | null): Promise<User[]>;
+  update(id: string, data: Prisma.UserUncheckedUpdateInput): Promise<User>;
+  delete(id: string): Promise<void>;
 }

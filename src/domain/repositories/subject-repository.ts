@@ -11,4 +11,5 @@ export interface SubjectRepository {
   findByStudent(studentId: string): Promise<Subject[]>;
   findMany(): Promise<Subject[]>;
   findManyByTeacher(teacherId: string): Promise<Subject[]>;
+  delete(subjectId: string): Promise<void>;
 }

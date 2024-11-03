@@ -2,21 +2,21 @@ import { Prisma, Subject } from "@prisma/client";
 import { SubjectRepository } from "../../repositories/subject-repository";
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error";
 
-interface EdiSubjectUseCaseRequest {
+interface EditSubjectUseCaseRequest {
   subjectId: string;
-  data: Prisma.SubjectCreateInput;
+  data: Prisma.SubjectUncheckedUpdateInput;
 }
-interface EdiSubjectUseCaseResponse {
+interface EditSubjectUseCaseResponse {
   subject: Subject;
 }
 
-export class EdiSubjectUseCase {
+export class EditSubjectUseCase {
   constructor(private subjectRepository: SubjectRepository) {}
 
   async execute({
     data,
     subjectId,
-  }: EdiSubjectUseCaseRequest): Promise<EdiSubjectUseCaseResponse> {
+  }: EditSubjectUseCaseRequest): Promise<EditSubjectUseCaseResponse> {
     const subject = await this.subjectRepository.findById(subjectId);
 
     if (!subject) {
