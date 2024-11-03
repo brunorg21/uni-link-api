@@ -23,14 +23,14 @@ export class PrismaClassroomRepository implements ClassroomRepository {
 
   async findMany(date?: string | null): Promise<Classroom[] | []> {
     // Log para verificação
-    console.log("a", dayjs(date).utc().startOf("day").toISOString());
+    console.log("a", dayjs(date).startOf("day").toISOString());
 
     const classrooms = await prisma.classroom.findMany({
       include: {
         alocations: {
           where: {
             ...(date && {
-              date: dayjs(date).utc().startOf("day").toISOString(),
+              date: dayjs(date).startOf("day").toISOString(),
             }),
           },
           include: {
@@ -42,7 +42,7 @@ export class PrismaClassroomRepository implements ClassroomRepository {
         classes: {
           where: {
             ...(date && {
-              classDate: dayjs(date).utc().startOf("day").toISOString(),
+              classDate: dayjs(date).startOf("day").toISOString(),
             }),
           },
           select: {
@@ -57,6 +57,51 @@ export class PrismaClassroomRepository implements ClassroomRepository {
           },
         },
       },
+    });
+
+    return classrooms;
+  }
+
+  async findManyMostUseful(date?: string | null): Promise<Classroom[] | []> {
+    console.log("date", date);
+
+    const formattedDate = date
+      ? dayjs(date).utc().startOf("day").toISOString()
+      : undefined;
+    console.log("b", formattedDate);
+
+    const classrooms = await prisma.classroom.findMany({
+      include: {
+        _count: {
+          select: {
+            alocations: true,
+          },
+        },
+
+        classes: {
+          where: {
+            ...(date && {
+              classDate: formattedDate,
+            }),
+          },
+          select: {
+            subject: {
+              include: {
+                user: true,
+              },
+            },
+            classScheduleId: true,
+            id: true,
+            classDate: true,
+          },
+        },
+      },
+      orderBy: {
+        alocations: {
+          _count: "desc",
+        },
+      },
+      take: 5,
     });
 
     return classrooms;

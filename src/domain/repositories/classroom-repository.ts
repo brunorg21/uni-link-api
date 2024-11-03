@@ -10,4 +10,5 @@ export interface ClassroomRepository {
   findById(id: string): Promise<Classroom | null>;
   findByTeacher(teacherId: string): Promise<Classroom[] | null>;
   findMany(date?: string | null): Promise<Classroom[] | []>;
+  findManyMostUseful(date?: string | null): Promise<Classroom[] | []>;
 }
