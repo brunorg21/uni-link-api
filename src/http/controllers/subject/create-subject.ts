@@ -6,10 +6,14 @@ import { z } from "zod";
 const createSubjectSchema = z.object({
   name: z.string(),
   userId: z.string().uuid(),
+  courseId: z.string().uuid(),
+  semester: z.number(),
 });
 
 export async function createSubject(req: FastifyRequest, reply: FastifyReply) {
-  const { name, userId } = createSubjectSchema.parse(req.body);
+  const { name, userId, courseId, semester } = createSubjectSchema.parse(
+    req.body
+  );
 
   const subjectRepository = new PrismaSubjectRepository();
   const createSubjectUseCase = new CreateSubjectUseCase(subjectRepository);
@@ -19,6 +23,8 @@ export async function createSubject(req: FastifyRequest, reply: FastifyReply) {
       data: {
         userId,
         name,
+        courseId,
+        semester,
       },
     });
 

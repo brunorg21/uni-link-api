@@ -29,6 +29,7 @@ export class PrismaSubjectRepository implements SubjectRepository {
       include: {
         user: true,
         classes: true,
+        course: true,
       },
     });
 

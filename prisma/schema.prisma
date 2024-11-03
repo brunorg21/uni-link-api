@@ -37,12 +37,21 @@ model User {
   @@map("users")
 }
 
+model Course {
+  id       String    @id @default(uuid())
+  name     String
+  subjects Subject[]
+}
+
 model Subject {
-  id      String    @id @default(uuid())
-  name    String
-  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId  String
-  classes Classes[]
+  id       String    @id @default(uuid())
+  name     String
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  semester Int?
+  course   Course    @relation(fields: [courseId], references: [id])
+  classes  Classes[]
+  courseId String
+  userId   String
 
   @@map("subjects")
 }
