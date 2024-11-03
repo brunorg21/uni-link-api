@@ -44,6 +44,21 @@ export class PrismaClassesRepository implements ClassesRepository {
     return classes;
   }
   async delete(classId: string): Promise<void> {
+    const a = await prisma.classroom.findMany({
+      include: {
+        _count: {
+          select: {
+            alocations: true,
+          },
+        },
+      },
+      orderBy: {
+        alocations: {
+          _count: "desc",
+        },
+      },
+    });
+
     await prisma.classes.delete({
       where: {
         id: classId,

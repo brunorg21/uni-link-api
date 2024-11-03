@@ -11,13 +11,14 @@ const createAlocationSchema = z.object({
   subjectId: z.string(),
   classScheduleIds: z.array(z.string()),
   date: z.string(),
+  userId: z.string(),
 });
 
 export async function createAlocation(
   req: FastifyRequest,
   reply: FastifyReply
 ) {
-  const { classroomId, subjectId, classScheduleIds, date } =
+  const { classroomId, subjectId, classScheduleIds, date, userId } =
     createAlocationSchema.parse(req.body);
 
   const alocationRepository = new PrismaAlocationRepository();
@@ -45,7 +46,7 @@ export async function createAlocation(
         createAlocationUseCase.execute({
           alocation: {
             classroomId,
-            userId: req.user.sub,
+            userId,
             classesId: classes.class.id,
             date,
           },

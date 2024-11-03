@@ -62,6 +62,48 @@ export class PrismaClassroomRepository implements ClassroomRepository {
     return classrooms;
   }
 
+  async findManyMostUseful(date?: string | null): Promise<Classroom[] | []> {
+    const formattedDate = date
+      ? dayjs(date).utc().startOf("day").toISOString()
+      : undefined;
+
+    const classrooms = await prisma.classroom.findMany({
+      include: {
+        _count: {
+          select: {
+            alocations: true,
+          },
+        },
+
+        classes: {
+          where: {
+            ...(date && {
+              classDate: formattedDate,
+            }),
+          },
+          select: {
+            subject: {
+              include: {
+                user: true,
+              },
+            },
+            classScheduleId: true,
+            id: true,
+            classDate: true,
+          },
+        },
+      },
+      orderBy: {
+        alocations: {
+          _count: "desc",
+        },
+      },
+      take: 5,
+    });
+
+    return classrooms;
+  }
+
   async findByTeacher(teacherId: string): Promise<Classroom[] | null> {
     const classrooms = await prisma.classroom.findMany({
       where: {
