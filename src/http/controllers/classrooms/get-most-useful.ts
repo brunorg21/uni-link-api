@@ -6,6 +6,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 const getSchema = z.object({
+  userId: z.string(),
   date: z.string().nullish(),
 });
 
@@ -15,12 +16,15 @@ export async function getMostUseful(req: FastifyRequest, reply: FastifyReply) {
     classroomRepository
   );
 
-  const { date } = getSchema.parse(req.query);
+  const { date, userId } = getSchema.parse(req.query);
 
   console.log("a", date);
 
   try {
-    const { classrooms } = await findManyClassroomUseCase.execute({ date });
+    const { classrooms } = await findManyClassroomUseCase.execute({
+      userId,
+      date,
+    });
     return classrooms;
   } catch (error) {
     console.log("error", error);
