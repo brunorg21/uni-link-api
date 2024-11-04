@@ -8,6 +8,7 @@ import { subjectRoutes } from "./http/controllers/subject/routes";
 import { classSchedulesRoutes } from "./http/controllers/classSchedule/routes";
 import { alocationRoutes } from "./http/controllers/alocation/routes";
 import { classesRoutes } from "./http/controllers/classes/routes";
+import { courseRoutes } from "./http/controllers/course/routes";
 
 const app = fastify();
 
@@ -27,6 +28,7 @@ app.register(subjectRoutes);
 app.register(classSchedulesRoutes);
 app.register(alocationRoutes);
 app.register(classesRoutes);
+app.register(courseRoutes);
 
 app
   .listen({
