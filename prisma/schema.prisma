@@ -48,9 +48,9 @@ model Subject {
   name     String
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   semester Int?
-  course   Course    @relation(fields: [courseId], references: [id])
+  course   Course?   @relation(fields: [courseId], references: [id])
   classes  Classes[]
-  courseId String
+  courseId String?
   userId   String
 
   @@map("subjects")
