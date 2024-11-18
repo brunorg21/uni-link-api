@@ -31,3 +31,5 @@ UniLink é um sistema de gerenciamento de salas onde o objetivo é facilitar o a
 - [x] O administrador/professor deve poder editar, excluir e adicionar qualquer alocação
 - [x] O sistema deve sugerir a sala mais adequada para a turma do docente.
 - [x] O sistema não deve permitir que o aluno faça alterações nas alocações.
+- [x] O sistema deve permitir que o aluno se matricule nas matérias.
+- [x] O sistema deve permitir que o aluno se matricule nas matérias por semestre.

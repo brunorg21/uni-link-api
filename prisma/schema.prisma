@@ -33,6 +33,8 @@ model User {
   subjects      Subject[]
   createdAt     DateTime    @default(now())
   alocations    Alocation[]
+  Course        Course?     @relation(fields: [courseId], references: [id])
+  courseId      String?
 
   @@map("users")
 }
@@ -41,6 +43,7 @@ model Course {
   id       String    @id @default(uuid())
   name     String
   subjects Subject[]
+  User     User[]
 }
 
 model Subject {

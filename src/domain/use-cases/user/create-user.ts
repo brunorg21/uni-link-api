@@ -9,6 +9,7 @@ interface CreateUserUseCaseRequest {
     email: string;
     password: string;
     role: "STUDENT" | "TEACHER" | "ADMIN";
+    courseId?: string;
   };
 }
 interface CreateUserUseCaseResponse {
@@ -33,7 +34,8 @@ export class CreateUserUseCase {
       email: user.email,
       name: user.name,
       password_hash: passwordHash,
-      role: user.role
+      role: user.role,
+      courseId: user.courseId,
     });
 
     return {

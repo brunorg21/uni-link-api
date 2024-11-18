@@ -3,6 +3,16 @@ import { UserRepository } from "../repositories/user-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaUsersRepository implements UserRepository {
+  async findManyStudents(): Promise<User[]> {
+    const students = await prisma.user.findMany({
+      where: {
+        role: "STUDENT",
+      },
+    });
+
+    return students;
+  }
+
   async update(
     id: string,
     data: Prisma.UserUncheckedUpdateInput
@@ -16,6 +26,7 @@ export class PrismaUsersRepository implements UserRepository {
 
     return user;
   }
+
   async delete(id: string): Promise<void> {
     await prisma.user.delete({
       where: {

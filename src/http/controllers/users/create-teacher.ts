@@ -9,10 +9,13 @@ const teacherSchema = z.object({
   password: z.string(),
   role: z.enum(["TEACHER", "ADMIN", "STUDENT"]),
   name: z.string(),
+  courseId: z.string().optional(),
 });
 
 export async function createTeacher(req: FastifyRequest, reply: FastifyReply) {
-  const { email, name, password, role } = teacherSchema.parse(req.body);
+  const { email, name, password, role, courseId } = teacherSchema.parse(
+    req.body
+  );
   const teacherRepository = new PrismaUsersRepository();
   const createTeacherUseCase = new CreateUserUseCase(teacherRepository);
 
@@ -23,6 +26,7 @@ export async function createTeacher(req: FastifyRequest, reply: FastifyReply) {
         name,
         password,
         role,
+        courseId,
       },
     });
     return reply.status(201).send({

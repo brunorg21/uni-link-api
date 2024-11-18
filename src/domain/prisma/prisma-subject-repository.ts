@@ -3,6 +3,16 @@ import { SubjectRepository } from "../repositories/subject-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaSubjectRepository implements SubjectRepository {
+  async findBySemester(semester: number, courseId: string): Promise<Subject[]> {
+    const subjects = await prisma.subject.findMany({
+      where: {
+        semester,
+        courseId,
+      },
+    });
+
+    return subjects;
+  }
   async create(data: Prisma.SubjectUncheckedCreateInput): Promise<Subject> {
     const subject = await prisma.subject.create({
       data,
