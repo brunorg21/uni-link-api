@@ -23,6 +23,24 @@ export class PrismaClassesRepository implements ClassesRepository {
 
     return allClasses;
   }
+
+  async findMany(date?: string | null): Promise<Classes[]> {
+    const formattedDate = date
+      ? dayjs(date).utc().startOf("day").toISOString()
+      : undefined;
+    const classes = await prisma.classes.findMany({
+      where: {
+        classDate: formattedDate,
+      },
+      include: {
+        subject: true,
+        classSchedule: true,
+        classroom: true,
+      },
+    });
+
+    return classes;
+  }
   async create(data: Prisma.ClassesUncheckedCreateInput): Promise<Classes> {
     const classes = await prisma.classes.create({
       data,

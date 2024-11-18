@@ -65,19 +65,33 @@ export class PrismaClassroomRepository implements ClassroomRepository {
     return classrooms;
   }
 
-  async findManyMostUseful(date?: string | null): Promise<Classroom[] | []> {
+  async findManyMostUseful(
+    userId: string,
+    date?: string | null
+  ): Promise<Classroom[] | []> {
     const formattedDate = date
       ? dayjs(date).utc().startOf("day").toISOString()
       : undefined;
 
+    // Primeiro, obtemos as salas com as contagens desejadas em uma subquery
     const classrooms = await prisma.classroom.findMany({
+      where: {
+        alocations: {
+          some: {
+            userId,
+          },
+        },
+      },
       include: {
         _count: {
           select: {
-            alocations: true,
+            alocations: {
+              where: {
+                userId,
+              },
+            },
           },
         },
-
         classes: {
           where: {
             ...(date && {
@@ -98,7 +112,7 @@ export class PrismaClassroomRepository implements ClassroomRepository {
       },
       orderBy: {
         alocations: {
-          _count: "desc",
+          _count: "desc", // Define ordenação pela contagem de alocações
         },
       },
       take: 5,
