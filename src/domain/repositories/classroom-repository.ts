@@ -14,4 +14,5 @@ export interface ClassroomRepository {
     userId: string,
     date?: string | null
   ): Promise<Classroom[] | []>;
+  findManyAlocated(date?: string | null): Promise<Classroom[] | []>;
 }

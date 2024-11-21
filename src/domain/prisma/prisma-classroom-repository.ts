@@ -22,8 +22,6 @@ export class PrismaClassroomRepository implements ClassroomRepository {
   }
 
   async findMany(date?: string | null): Promise<Classroom[] | []> {
-    console.log("date", dayjs(date).startOf("day").toISOString());
-
     const formattedDate = date
       ? dayjs(date).utc().startOf("day").toISOString()
       : undefined;
@@ -65,12 +63,57 @@ export class PrismaClassroomRepository implements ClassroomRepository {
     return classrooms;
   }
 
+  async findManyAlocated(date?: string | null): Promise<Classroom[] | []> {
+    const formattedDate = date
+      ? dayjs(date).startOf("day").subtract(3, "hour").toISOString()
+      : undefined;
+
+    const classrooms = await prisma.classroom.findMany({
+      where: {
+        alocations: {
+          some: {
+            ...(formattedDate && { date: formattedDate }),
+          },
+        },
+      },
+      include: {
+        alocations: {
+          where: {
+            ...(formattedDate && { date: formattedDate }),
+          },
+          include: {
+            class: true,
+            classroom: true,
+            user: true,
+          },
+        },
+        classes: {
+          where: {
+            ...(formattedDate && { classDate: formattedDate }),
+          },
+          select: {
+            subject: {
+              include: {
+                user: true,
+              },
+            },
+            classScheduleId: true,
+            id: true,
+            classDate: true,
+          },
+        },
+      },
+    });
+
+    return classrooms;
+  }
+
   async findManyMostUseful(
     userId: string,
     date?: string | null
   ): Promise<Classroom[] | []> {
     const formattedDate = date
-      ? dayjs(date).utc().startOf("day").toISOString()
+      ? dayjs(date).startOf("day").toISOString()
       : undefined;
 
     // Primeiro, obtemos as salas com as contagens desejadas em uma subquery

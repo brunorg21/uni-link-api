@@ -1,6 +1,7 @@
 import { $Enums, Prisma, User } from "@prisma/client";
 import { UserRepository } from "../repositories/user-repository";
 import { prisma } from "@/lib/prisma";
+import dayjs from "dayjs";
 
 export class PrismaUsersRepository implements UserRepository {
   async findManyStudents(): Promise<User[]> {
@@ -48,6 +49,33 @@ export class PrismaUsersRepository implements UserRepository {
     });
 
     return users;
+  }
+
+  async findManyTeachers(date?: string | null): Promise<User[]> {
+    const formattedDate = date
+      ? dayjs(date).startOf("day").subtract(3, "hour").toISOString()
+      : undefined;
+
+    const teachers = await prisma.user.findMany({
+      where: {
+        subjects: {
+          some: {
+            classes: {
+              some: {
+                classDate: formattedDate,
+              },
+            },
+          },
+        },
+      },
+      include: {
+        subjects: true,
+      },
+    });
+
+    console.log("teachers", teachers);
+
+    return teachers;
   }
 
   async create(data: Prisma.UserUncheckedCreateInput): Promise<User> {
