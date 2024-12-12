@@ -25,9 +25,14 @@ export class PrismaClassesRepository implements ClassesRepository {
   }
 
   async findMany(date?: string | null): Promise<Classes[]> {
+    console.log("dateClasses", date);
+
     const formattedDate = date
-      ? dayjs(date).utc().startOf("day").toISOString()
+      ? dayjs(date).startOf("day").subtract(3, "hour").toISOString()
       : undefined;
+
+    console.log("formattedDateClasses", formattedDate);
+
     const classes = await prisma.classes.findMany({
       where: {
         classDate: formattedDate,
