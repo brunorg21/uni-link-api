@@ -33,7 +33,7 @@ model User {
   subjects      Subject[]
   createdAt     DateTime    @default(now())
   alocations    Alocation[]
-  Course        Course?     @relation(fields: [courseId], references: [id])
+  Course        Course?     @relation(fields: [courseId], references: [id], onDelete: Cascade)
   courseId      String?
 
   @@map("users")
@@ -51,7 +51,7 @@ model Subject {
   name     String
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   semester Int?
-  course   Course?   @relation(fields: [courseId], references: [id])
+  course   Course?   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   classes  Classes[]
   courseId String?
   userId   String
@@ -61,7 +61,7 @@ model Subject {
 
 model Classes {
   id              String        @id @default(uuid())
-  subject         Subject       @relation(fields: [subjectId], references: [id])
+  subject         Subject       @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   subjectId       String
   classSchedule   ClassSchedule @relation(fields: [classScheduleId], references: [id])
   classScheduleId String
@@ -101,7 +101,7 @@ model Alocation {
   userId      String
   classroom   Classroom @relation(fields: [classroomId], references: [id])
   classroomId String
-  class       Classes   @relation(fields: [classesId], references: [id])
+  class       Classes   @relation(fields: [classesId], references: [id], onDelete: Cascade)
   classesId   String
   createdAt   DateTime  @default(now())
   date        DateTime

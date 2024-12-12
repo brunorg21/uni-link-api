@@ -3,6 +3,21 @@ import { AlocationRepository } from "../repositories/alocation-repository";
 import { prisma } from "@/lib/prisma";
 
 export class PrismaAlocationRepository implements AlocationRepository {
+  async findMany(): Promise<Alocation[]> {
+    const alocations = await prisma.alocation.findMany({
+      include: {
+        classroom: true,
+        class: {
+          include: {
+            classSchedule: true,
+            subject: true,
+          },
+        },
+      },
+    });
+
+    return alocations;
+  }
   async create(data: Prisma.AlocationUncheckedCreateInput): Promise<Alocation> {
     const alocation = await prisma.alocation.create({
       data,
@@ -10,6 +25,26 @@ export class PrismaAlocationRepository implements AlocationRepository {
 
     return alocation;
   }
+
+  async findManyByTeacher(teacherId: string): Promise<Alocation[]> {
+    const alocations = await prisma.alocation.findMany({
+      where: {
+        userId: teacherId,
+      },
+      include: {
+        classroom: true,
+        class: {
+          include: {
+            classSchedule: true,
+            subject: true,
+          },
+        },
+      },
+    });
+
+    return alocations;
+  }
+
   async edit(
     alocationId: string,
     data: Prisma.AlocationUncheckedUpdateInput

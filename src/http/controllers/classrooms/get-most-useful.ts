@@ -18,8 +18,6 @@ export async function getMostUseful(req: FastifyRequest, reply: FastifyReply) {
 
   const { date, userId } = getSchema.parse(req.query);
 
-  console.log("a", date);
-
   try {
     const { classrooms } = await findManyClassroomUseCase.execute({
       userId,

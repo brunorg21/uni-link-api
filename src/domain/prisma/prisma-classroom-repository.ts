@@ -22,8 +22,6 @@ export class PrismaClassroomRepository implements ClassroomRepository {
   }
 
   async findMany(date?: string | null): Promise<Classroom[] | []> {
-    console.log("date", dayjs(date).startOf("day").toISOString());
-
     const formattedDate = date
       ? dayjs(date).utc().startOf("day").toISOString()
       : undefined;

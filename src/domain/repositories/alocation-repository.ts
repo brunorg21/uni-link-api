@@ -8,4 +8,6 @@ export interface AlocationRepository {
   ): Promise<Alocation>;
   delete(alocationId: string): Promise<void>;
   findById(alocationId: string): Promise<Alocation | null>;
+  findManyByTeacher(teacherId: string): Promise<Alocation[]>;
+  findMany(): Promise<Alocation[]>;
 }
